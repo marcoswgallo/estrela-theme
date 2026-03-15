@@ -206,17 +206,21 @@ img {
 
 /* Logo Image */
 .logo-img {
-    height: 50px;
-    width: auto;
+    height: 45px;
+    width: 45px;
     object-fit: contain;
-    /* Suaviza o brasão para ter contraste sobre o hero escuro */
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+    border-radius: 50%;        /* faz o brasão ser circular, escondendo os cantos brancos */
+    background: transparent;
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+    flex-shrink: 0;
 }
 
 .logo-img-footer {
-    height: 60px;
-    /* Remove o filtro dark no footer pois o fundo já é escuro */
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
     filter: none;
+    opacity: 0.95;
 }
 
 .desktop-nav ul {
