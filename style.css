@@ -1283,7 +1283,7 @@ img {
 /* Officers Grid */
 .officers-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 25px;
     margin-bottom: 70px;
 }
@@ -1324,7 +1324,8 @@ img {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 80px;
+    min-height: 150px;
+    overflow: hidden;
 }
 
 .officer-name {
@@ -1403,15 +1404,7 @@ img {
     color: #a07020;
 }
 
-@media (max-width: 992px) {
-    .officers-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
 @media (max-width: 600px) {
-    .officers-grid {
-        grid-template-columns: 1fr;
-    }
     .admin-table-wrapper {
         padding: 20px;
         overflow-x: auto;
@@ -1420,11 +1413,12 @@ img {
 
 /* Officer Jewel Images */
 .officer-jewel {
-    height: 140px;
-    width: auto;
-    max-width: 160px;
-    object-fit: contain;
     display: block;
+    width: auto;
+    height: auto;
+    max-height: 140px;
+    max-width: min(150px, 100%);
+    object-fit: contain;
     margin: 0 auto;
     filter: drop-shadow(0 2px 8px rgba(0,0,0,0.18));
 }
