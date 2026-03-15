@@ -206,20 +206,17 @@ img {
 
 /* Logo Image */
 .logo-img {
-    height: 45px;
-    width: 45px;
+    height: 50px;
+    width: 50px;
     object-fit: contain;
-    border-radius: 50%;        /* faz o brasão ser circular, escondendo os cantos brancos */
-    background: transparent;
-    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
+    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
     flex-shrink: 0;
 }
 
 .logo-img-footer {
-    height: 50px;
-    width: 50px;
-    border-radius: 50%;
-    filter: none;
+    height: 55px;
+    width: 55px;
+    object-fit: contain;
     opacity: 0.95;
 }
 
