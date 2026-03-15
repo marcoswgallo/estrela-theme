@@ -13,7 +13,9 @@
     <header class="main-header" id="header">
         <div class="container nav-wrapper">
             <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
-                <span class="logo-symbol">G</span>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png"
+                     alt="<?php bloginfo('name'); ?>"
+                     class="logo-img">
                 <span class="logo-text"><?php bloginfo( 'name' ); ?></span>
             </a>
             <nav class="desktop-nav">

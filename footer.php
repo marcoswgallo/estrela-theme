@@ -3,7 +3,9 @@
         <div class="container footer-grid">
             <div class="footer-brand">
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo text-white">
-                    <span class="logo-symbol gold">G</span>
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png"
+                         alt="<?php bloginfo('name'); ?>"
+                         class="logo-img logo-img-footer">
                     <span class="logo-text"><?php bloginfo('name'); ?></span>
                 </a>
                 <p class="mt-2 text-muted"><?php bloginfo('description'); ?> A serviço da humanidade. Promovendo liberdade, igualdade e fraternidade desde a nossa fundação.</p>
