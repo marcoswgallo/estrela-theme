@@ -38,7 +38,7 @@ get_header(); ?>
                     <i data-feather="map-pin" class="info-icon"></i>
                     <div>
                         <strong>Endereço</strong><br>
-                        <span style="color: rgba(255,255,255,0.8);">Ribeirão Preto, SP</span>
+                        <span style="color: rgba(255,255,255,0.8);">R. Francisca Massaro Farinha, 385/399<br>Ribeirânia, Ribeirão Preto - SP, 14096-460</span>
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@ get_header(); ?>
                     <i data-feather="clock" class="info-icon"></i>
                     <div>
                         <strong>Reuniões</strong><br>
-                        <span style="color: rgba(255,255,255,0.8);">Sábados, às 09:00</span>
+                        <a href="/eventos/" class="text-link" style="color: rgba(255,255,255,0.8); text-decoration: underline;">Veja nosso Calendário / Eventos</a>
                     </div>
                 </div>
             </div>

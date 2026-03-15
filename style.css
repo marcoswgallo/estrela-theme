@@ -792,6 +792,11 @@ img {
 .page-hero-simple h1 {
     color: var(--white);
     font-size: 2.5rem;
+    text-align: center;
+}
+
+.page-hero-simple p {
+    text-align: center;
 }
 
 /* Page content body */
@@ -1042,4 +1047,89 @@ img {
         flex-direction: column;
         gap: 0;
     }
+}
+
+/* ==========================================================================
+   WPFORMS OVERRIDES
+   ========================================================================== */
+   
+/* Reset and Alignment */
+.wpforms-container {
+    margin: 0 !important;
+}
+
+/* Labels */
+.wpforms-form .wpforms-field-label {
+    display: block;
+    margin-bottom: 8px !important;
+    font-weight: 500 !important;
+    color: var(--primary-blue) !important;
+    font-size: 0.95rem !important;
+}
+
+/* Inputs and Textareas */
+.wpforms-form input[type=date], 
+.wpforms-form input[type=datetime], 
+.wpforms-form input[type=datetime-local], 
+.wpforms-form input[type=email], 
+.wpforms-form input[type=month], 
+.wpforms-form input[type=number], 
+.wpforms-form input[type=password], 
+.wpforms-form input[type=range], 
+.wpforms-form input[type=search], 
+.wpforms-form input[type=tel], 
+.wpforms-form input[type=text], 
+.wpforms-form input[type=time], 
+.wpforms-form input[type=url], 
+.wpforms-form input[type=week], 
+.wpforms-form select, 
+.wpforms-form textarea {
+    width: 100% !important;
+    padding: 12px 15px !important;
+    border: 1px solid #ddd !important;
+    border-radius: 4px !important;
+    font-family: var(--font-body) !important;
+    font-size: 1rem !important;
+    background-color: transparent !important;
+    color: var(--text-color) !important;
+    transition: border-color 0.3s ease !important;
+}
+
+/* Focus State */
+.wpforms-form input:focus,
+.wpforms-form textarea:focus {
+    outline: none !important;
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 0 0 1px var(--accent-gold) !important;
+}
+
+/* Submit Button */
+.wpforms-form button[type=submit] {
+    background-color: var(--primary-blue) !important;
+    color: var(--white) !important;
+    border: 1px solid var(--primary-blue) !important;
+    font-family: var(--font-heading) !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
+    padding: 12px 25px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    margin-top: 10px !important;
+    width: auto !important;
+}
+
+.wpforms-form button[type=submit]:hover {
+    background-color: var(--accent-gold) !important;
+    border-color: var(--accent-gold) !important;
+    color: var(--primary-blue) !important;
+}
+
+/* Sub-labels (like First Name / Last Name) */
+.wpforms-form .wpforms-field-sublabel {
+    font-size: 0.8rem !important;
+    color: #666 !important;
+    margin-top: 4px !important;
 }
