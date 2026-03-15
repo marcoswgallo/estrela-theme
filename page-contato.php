@@ -36,9 +36,22 @@ get_header(); ?>
 
                 <div class="info-item">
                     <i data-feather="map-pin" class="info-icon"></i>
-                    <div>
+                    <div style="flex: 1;">
                         <strong>Endereço</strong><br>
                         <span style="color: rgba(255,255,255,0.8);">R. Francisca Massaro Farinha, 385/399<br>Ribeirânia, Ribeirão Preto - SP, 14096-460</span>
+                        <!-- Google Maps Embed -->
+                        <div class="contact-map">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.7!2d-47.8596!3d-21.1795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b9bff4e5c5a5c5%3A0x0!2sR.+Francisca+Massaro+Farinha%2C+385-399+-+Riber%C3%A2nia%2C+Ribeir%C3%A3o+Preto+-+SP%2C+14096-460!5e0!3m2!1spt-BR!2sbr!4v1000000000000!5m2!1spt-BR!2sbr"
+                                width="100%"
+                                height="180"
+                                style="border:0; border-radius: 6px; margin-top: 12px; display: block;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="Localização da Loja Estrela de Ribeirão Preto">
+                            </iframe>
+                        </div>
                     </div>
                 </div>
 

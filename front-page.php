@@ -15,7 +15,7 @@ get_header(); ?>
             <p class="fade-in-up delay-1">Uma fraternidade moderna enraizada em sabedoria ancestral, dedicada ao progresso intelectual, moral e espiritual da humanidade.</p>
             <div class="hero-buttons fade-in-up delay-2">
                 <a href="#sobre" class="btn btn-primary">Conhecer a Loja</a>
-                <a href="#eventos" class="btn btn-text">Próximos Eventos <i data-feather="arrow-right"></i></a>
+                <a href="/eventos/" class="btn btn-text">Próximas Sessões <i data-feather="arrow-right"></i></a>
             </div>
         </div>
     </section>
@@ -31,7 +31,7 @@ get_header(); ?>
                 <h2 class="section-title">O Templo da Razão e da <span class="highlight-dark">Tradição Secular</span></h2>
                 <p>Fundada sob os pilares de Liberdade, Igualdade e Fraternidade, a Loja Estrela de Ribeirão Preto Nº 3132 tem sido um farol de desenvolvimento humano e benevolência na comunidade há décadas.</p>
                 <p>Através do estudo e da disciplina ética, nossos obreiros se dedicam ao aperfeiçoamento contínuo — não apenas para o benefício próprio, mas no serviço incessante pela paz universal e pelo bem-estar da sociedade.</p>
-                <a href="#" class="btn btn-primary mt-2">Ler História Completa</a>
+                <a href="/sobre/" class="btn btn-primary mt-2">Ler História Completa</a>
             </div>
             <div class="about-image">
                 <div class="image-frame">
@@ -124,7 +124,7 @@ get_header(); ?>
                 <?php endif; ?>
             </div>
             <div class="text-center mt-4">
-                <a href="<?php echo esc_url( get_permalink( get_option( 'page_for_posts' ) ) ); ?>" class="btn btn-outline-dark">Ver Todas Notícias</a>
+                <a href="/blog/" class="btn btn-outline-dark">Ver Todas Notícias</a>
             </div>
         </div>
     </section>
