@@ -42,9 +42,9 @@ get_header(); ?>
                         <!-- Google Maps Embed -->
                         <div class="contact-map">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3700.7!2d-47.8596!3d-21.1795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b9bff4e5c5a5c5%3A0x0!2sR.+Francisca+Massaro+Farinha%2C+385-399+-+Riber%C3%A2nia%2C+Ribeir%C3%A3o+Preto+-+SP%2C+14096-460!5e0!3m2!1spt-BR!2sbr!4v1000000000000!5m2!1spt-BR!2sbr"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d837.8791082937059!2d-47.7781817003073!3d-21.20050308118447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94b9b9e3d2ac2069%3A0xe8299f8fa8636c12!2sARLS%20Fraternidade%20de%20Ribeir%C3%A3o%20Preto!5e0!3m2!1spt-BR!2sbr!4v1773614687146!5m2!1spt-BR!2sbr"
                                 width="100%"
-                                height="180"
+                                height="200"
                                 style="border:0; border-radius: 6px; margin-top: 12px; display: block;"
                                 allowfullscreen=""
                                 loading="lazy"
