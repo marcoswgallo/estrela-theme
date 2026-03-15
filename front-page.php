@@ -52,10 +52,20 @@ get_header(); ?>
             <div class="masonry-grid">
                 <?php
                 // Configuração da WP_Query para buscar as últimas postagens e exibir na grade Masonry
+                // Exclui categorias internas da Área do Obreiro da listagem pública
+                $restricted_slugs = array( 'avisos', 'atas', 'escalas', 'documentos' );
+                $excluded_cat_ids = array();
+                foreach ( $restricted_slugs as $slug ) {
+                    $cat = get_category_by_slug( $slug );
+                    if ( $cat ) {
+                        $excluded_cat_ids[] = $cat->term_id;
+                    }
+                }
                 $masonry_args = array(
-                    'post_type'      => 'post',
-                    'posts_per_page' => 6,
-                    'post_status'    => 'publish'
+                    'post_type'        => 'post',
+                    'posts_per_page'   => 6,
+                    'post_status'      => 'publish',
+                    'category__not_in' => $excluded_cat_ids,
                 );
                 $masonry_query = new WP_Query( $masonry_args );
 

@@ -26,7 +26,13 @@
                         )
                     );
                 } else {
-                    echo '<ul><li><a href="/">Página Inicial</a></li><li><a href="/sobre">Nossa História</a></li><li><a href="/eventos/">Calendário Fraternal</a></li></ul>';
+                    echo '<ul>
+                        <li><a href="/">Página Inicial</a></li>
+                        <li><a href="/nossa-historia/">Nossa História</a></li>
+                        <li><a href="/administracao/">Administração</a></li>
+                        <li><a href="/eventos/">Calendário Fraternal</a></li>
+                        <li><a href="/contato/">Contato</a></li>
+                    </ul>';
                 }
                 ?>
             </div>

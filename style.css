@@ -1133,3 +1133,298 @@ img {
     color: #666 !important;
     margin-top: 4px !important;
 }
+
+/* ==========================================================================
+   ÁREA DO OBREIRO — MEMBER DASHBOARD
+   ========================================================================== */
+.obreiro-page {
+    background-color: var(--light-bg);
+    min-height: 80vh;
+}
+
+.obreiro-hero {
+    background: linear-gradient(135deg, #001a33 0%, var(--primary-blue) 100%);
+}
+
+.obreiro-dashboard {
+    padding: 60px 0;
+}
+
+.obreiro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+/* Module Card */
+.obreiro-module {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.module-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 20px 25px;
+    background: var(--primary-blue);
+    color: var(--white);
+}
+
+.module-icon {
+    color: var(--accent-gold);
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+}
+
+.module-header h3 {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--white);
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.module-body {
+    padding: 20px 25px;
+    flex: 1;
+}
+
+.module-item {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+.module-item:last-child {
+    border-bottom: none;
+}
+
+.item-date {
+    font-size: 0.78rem;
+    color: #999;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+.item-link {
+    color: var(--primary-blue);
+    font-size: 0.95rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.item-link:hover {
+    color: var(--accent-gold);
+}
+
+.module-empty {
+    color: #aaa;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0;
+}
+
+.module-footer {
+    padding: 12px 25px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 0.85rem;
+}
+.module-footer a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Bottom Actions */
+.obreiro-actions {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 1px solid #e5e5e5;
+}
+
+@media (max-width: 768px) {
+    .obreiro-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ==========================================================================
+   ADMINISTRAÇÃO — OFFICER CARDS & TABLE
+   ========================================================================== */
+.admin-page {
+    background-color: var(--light-bg);
+}
+
+.admin-section {
+    padding: 70px 0;
+}
+
+.admin-header {
+    margin-bottom: 50px;
+}
+
+.admin-subtitle {
+    color: #777;
+    font-size: 0.95rem;
+    margin-top: 8px;
+    letter-spacing: 1px;
+}
+
+/* Officers Grid */
+.officers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 70px;
+}
+
+.officer-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border-top: 4px solid var(--primary-blue);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.officer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0,38,73,0.12);
+}
+
+.officer-card.officer-vem {
+    border-top-color: var(--accent-gold);
+    background: linear-gradient(145deg, #fff 0%, #fdf8ef 100%);
+}
+
+.officer-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent-gold);
+    margin-bottom: 12px;
+}
+
+.officer-icon {
+    font-size: 2rem;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80px;
+}
+
+.officer-name {
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    color: var(--primary-blue);
+    margin-bottom: 6px;
+}
+
+.officer-role {
+    font-size: 0.9rem;
+    color: #888;
+    font-style: italic;
+    margin: 0;
+}
+
+/* Formal Table */
+.admin-table-wrapper {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 35px 40px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.admin-table-title {
+    font-family: var(--font-heading);
+    color: var(--primary-blue);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th {
+    background-color: var(--primary-blue);
+    color: var(--white);
+    padding: 14px 20px;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.admin-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tr:hover td {
+    background-color: #f9f9f9;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 20px;
+    background: rgba(0,38,73,0.08);
+    color: var(--primary-blue);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+.role-badge.vem {
+    background: rgba(221,167,79,0.15);
+    color: #a07020;
+}
+
+@media (max-width: 992px) {
+    .officers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 600px) {
+    .officers-grid {
+        grid-template-columns: 1fr;
+    }
+    .admin-table-wrapper {
+        padding: 20px;
+        overflow-x: auto;
+    }
+}
+
+/* Officer Jewel Images */
+.officer-jewel {
+    height: 140px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+    filter: drop-shadow(0 2px 8px rgba(0,0,0,0.18));
+}

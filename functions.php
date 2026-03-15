@@ -49,3 +49,92 @@ function estrela_theme_setup() {
     );
 }
 add_action( 'after_setup_theme', 'estrela_theme_setup' );
+
+/**
+ * ÁREA DO OBREIRO — Proteção de Conteúdo
+ * 
+ * Redireciona visitantes não logados para a página de login do WordPress
+ * quando tentam acessar a Área do Obreiro OU qualquer post das categorias internas.
+ */
+
+// Slugs das categorias restritas
+define( 'ESTRELA_RESTRICTED_CATS', array( 'avisos', 'atas', 'escalas', 'documentos' ) );
+
+function estrela_protect_member_area() {
+    // Protege a página principal da área
+    $protected_slugs = array( 'area-do-obreiro', 'painel-do-obreiro' );
+
+    if ( is_page( $protected_slugs ) && ! is_user_logged_in() ) {
+        wp_redirect( wp_login_url( get_permalink() ) );
+        exit;
+    }
+
+    // Protege posts individuais das categorias internas
+    if ( is_single() && ! is_user_logged_in() ) {
+        $restricted = ESTRELA_RESTRICTED_CATS;
+        foreach ( $restricted as $cat_slug ) {
+            if ( in_category( $cat_slug ) ) {
+                wp_redirect( wp_login_url( get_permalink() ) );
+                exit;
+            }
+        }
+    }
+}
+add_action( 'template_redirect', 'estrela_protect_member_area' );
+
+/**
+ * Excluir categorias internas de TODAS as listagens públicas
+ * (blog, homepage, busca, RSS). Não afeta usuários logados.
+ */
+function estrela_exclude_restricted_from_public( $query ) {
+    if ( is_admin() || is_user_logged_in() ) {
+        return;
+    }
+
+    // Aplica apenas nas queries principais de listagem pública
+    if ( $query->is_main_query() && ( $query->is_home() || $query->is_archive() || $query->is_search() || $query->is_feed() ) ) {
+        $restricted = ESTRELA_RESTRICTED_CATS;
+        $cat_ids_to_exclude = array();
+        foreach ( $restricted as $slug ) {
+            $cat = get_category_by_slug( $slug );
+            if ( $cat ) {
+                $cat_ids_to_exclude[] = -$cat->term_id; // Negativo = excluir
+            }
+        }
+        if ( ! empty( $cat_ids_to_exclude ) ) {
+            $query->set( 'category__not_in', array_map( 'absint', $cat_ids_to_exclude ) );
+        }
+    }
+}
+add_action( 'pre_get_posts', 'estrela_exclude_restricted_from_public' );
+
+
+/**
+ * Registrar o papel (role) personalizado "Obreiro"
+ * Chamado apenas uma vez na ativação do tema.
+ */
+function estrela_register_obreiro_role() {
+    if ( ! get_role( 'obreiro' ) ) {
+        add_role(
+            'obreiro',
+            'Obreiro',
+            array(
+                'read'         => true,
+                'edit_posts'   => false,
+                'delete_posts' => false,
+            )
+        );
+    }
+}
+add_action( 'after_setup_theme', 'estrela_register_obreiro_role' );
+
+/**
+ * Redirecionar Obreiros logados para a Área do Obreiro em vez do dashboard do WP
+ */
+function estrela_redirect_obreiro_after_login( $redirect_to, $request, $user ) {
+    if ( isset( $user->roles ) && in_array( 'obreiro', $user->roles ) ) {
+        return home_url( '/area-do-obreiro/' );
+    }
+    return $redirect_to;
+}
+add_filter( 'login_redirect', 'estrela_redirect_obreiro_after_login', 10, 3 );

@@ -55,7 +55,7 @@
 
                 <!-- CTA Obreiro -->
                 <div class="header-actions">
-                    <a href="#portal" class="btn btn-gold">Área do Obreiro</a>
+                    <a href="/area-do-obreiro/" class="btn btn-gold">Área do Obreiro</a>
                 </div>
 
                 <!-- Mobile Toggle -->
