@@ -394,7 +394,7 @@ img {
 
 /* -- Header Spacer (prevents content from hiding behind fixed bar) -- */
 .header-spacer {
-    height: 130px; /* topbar (~33px) + navbar + logo overflow */
+    height: 120px; /* navbar + logo overflow */
 }
 
 
@@ -849,6 +849,20 @@ img {
     }
     .mobile-menu-btn {
         display: block;
+    }
+    .header-spacer {
+        height: 70px; /* smaller header on mobile */
+    }
+    .logo-img-large {
+        width: 60px;
+        height: 60px;
+    }
+    .logo-title {
+        font-size: 1rem;
+    }
+    .logo-subtitle {
+        font-size: 0.55rem;
+        letter-spacing: 1px;
     }
     .hero h1 {
         font-size: 2.8rem;

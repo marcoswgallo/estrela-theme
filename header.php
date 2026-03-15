@@ -14,20 +14,6 @@
          ===================================================== -->
     <header class="main-header" id="header">
 
-        <!-- Top Info Bar -->
-        <div class="header-topbar">
-            <div class="container topbar-inner">
-                <span class="topbar-item">
-                    <i data-feather="mail" class="topbar-icon"></i>
-                    contato@estreladeribeiraopreto.com.br
-                </span>
-                <span class="topbar-divider">|</span>
-                <span class="topbar-item">
-                    <i data-feather="phone" class="topbar-icon"></i>
-                    (16) 0000-0000
-                </span>
-            </div>
-        </div>
 
         <!-- Main Nav Bar -->
         <div class="header-navbar">
