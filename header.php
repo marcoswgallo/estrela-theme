@@ -45,9 +45,8 @@
                     } else {
                         echo '<ul>
                             <li><a href="/">Home</a></li>
-                            <li><a href="/quem-somos">Quem Somos</a></li>
-                            <li><a href="/publicacoes">Publicações</a></li>
-                            <li><a href="/eventos">Eventos</a></li>
+                            <li><a href="/sobre">Nossa História</a></li>
+                            <li><a href="/event/">Calendário</a></li>
                             <li><a href="/contato">Contato</a></li>
                         </ul>';
                     }
@@ -79,9 +78,8 @@
                 } else {
                     echo '<ul>
                         <li><a href="/">Home</a></li>
-                        <li><a href="/quem-somos">Quem Somos</a></li>
-                        <li><a href="/publicacoes">Publicações</a></li>
-                        <li><a href="/eventos">Eventos</a></li>
+                        <li><a href="/sobre">Nossa História</a></li>
+                        <li><a href="/event/">Calendário</a></li>
                         <li><a href="#portal">Área do Obreiro</a></li>
                     </ul>';
                 }
