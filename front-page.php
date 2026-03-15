@@ -20,27 +20,8 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- Impact Counters -->
-    <section class="impact-counters">
-        <div class="container counters-grid">
-            <div class="counter-box">
-                <h2 class="counter" data-target="120">0</h2>
-                <p>Anos de Tradição</p>
-            </div>
-            <div class="counter-box">
-                <h2 class="counter" data-target="45">0</h2>
-                <p>Ações Sociais ativas</p>
-            </div>
-            <div class="counter-box">
-                <h2 class="counter" data-target="15">0</h2>
-                <p>Projetos Filantrópicos</p>
-            </div>
-            <div class="counter-box">
-                <h2 class="counter" data-target="3132">0</h2>
-                <p>Registro GOSP</p>
-            </div>
-        </div>
-    </section>
+
+
 
     <!-- About Section -->
     <section class="about" id="sobre">
