@@ -20,7 +20,7 @@ Text Domain: estrela-theme
     --white: #FFFFFF;
     
     /* Typography */
-    --font-heading: 'Playfair Display', serif;
+    --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Roboto', sans-serif;
     
     /* Layout */
@@ -155,113 +155,249 @@ img {
     width: 100%;
 }
 
-/* Header Navbar */
+/* ==========================================================================
+   HEADER — Two-row redesign with large logo
+   ========================================================================== */
+
+/* Gold button variant */
+.btn-gold {
+    background-color: var(--accent-gold);
+    color: var(--white);
+    border: 1px solid var(--accent-gold);
+    padding: 9px 20px;
+    font-size: 0.85rem;
+}
+
+.btn-gold:hover {
+    background-color: var(--accent-gold-hover);
+    border-color: var(--accent-gold-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 15px rgba(153,140,101,0.3);
+}
+
+/* -- Top Info Bar -- */
+.header-topbar {
+    background-color: #001f3f;  /* Azul quase preto acima do header */
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(153,140,101,0.2);
+}
+
+.topbar-inner {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.topbar-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255,255,255,0.7);
+    font-size: 0.82rem;
+    letter-spacing: 0.3px;
+}
+
+.topbar-icon {
+    width: 13px;
+    height: 13px;
+    color: var(--accent-gold);
+}
+
+.topbar-divider {
+    color: rgba(255,255,255,0.2);
+}
+
+/* -- Main Navigation Bar -- */
 .main-header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;
-    padding: 20px 0;
-    transition: all 0.4s ease;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    transition: box-shadow 0.3s ease;
 }
 
-.main-header.scrolled {
+.header-navbar {
     background-color: var(--primary-blue);
-    padding: 15px 0;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    border-bottom: 3px solid var(--accent-gold);
+    transition: padding 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Sticky shrink state — added via JS on scroll */
+.main-header.scrolled .header-navbar {
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+    border-bottom: 2px solid var(--accent-gold);
+}
+
+.main-header.scrolled .logo-img-large {
+    height: 60px;
+    width: 60px;
+}
+
+.main-header.scrolled .logo-title {
+    font-size: 0.95rem;
+}
+
+.main-header.scrolled .logo-subtitle {
+    display: none;
+}
+
+.main-header.scrolled .nav-wrapper {
+    padding: 8px 0;
 }
 
 .nav-wrapper {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    align-items: center;
+    gap: 20px;
+    padding: 14px 0;
+    transition: padding 0.35s ease;
 }
 
-.logo {
+/* -- Large Logo -- */
+.logo-large {
     display: flex;
     align-items: center;
-    gap: 12px;
-}
-
-.logo-symbol {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    color: var(--accent-gold);
-    border: 1px solid var(--accent-gold);
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 2px;
-}
-
-.logo-text {
-    color: var(--white);
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-}
-
-/* Logo Image */
-.logo-img {
-    height: 50px;
-    width: 50px;
-    object-fit: contain;
-    filter: drop-shadow(0 1px 3px rgba(0,0,0,0.4));
+    gap: 14px;
+    text-decoration: none;
     flex-shrink: 0;
 }
 
-.logo-img-footer {
-    height: 55px;
-    width: 55px;
+.logo-img-large {
+    height: 100px;
+    width: 100px;
     object-fit: contain;
-    opacity: 0.95;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+    transition: height 0.35s ease, width 0.35s ease;
 }
 
+.logo-large:hover .logo-img-large {
+    transform: scale(1.05);
+}
+
+.logo-text-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
+
+.logo-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--accent-gold);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-top: 3px;
+}
+
+/* Footer logo (small) */
+.logo-img-footer {
+    height: 220px;
+    width: 220px;
+    object-fit: contain;
+    opacity: 0.9;
+    flex-shrink: 0;
+}
+
+/* -- Desktop Navigation -- */
 .desktop-nav ul {
     display: flex;
     list-style: none;
-    gap: 30px;
+    gap: 5px;
     margin: 0;
     padding: 0;
 }
 
 .desktop-nav a {
-    color: rgba(255,255,255,0.8);
-    font-size: 0.95rem;
+    display: block;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.88rem;
     font-weight: 400;
-    position: relative;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    padding: 8px 14px;
+    border-radius: 3px;
     text-decoration: none;
+    transition: all 0.25s ease;
 }
 
-.desktop-nav a:hover {
+.desktop-nav a:hover,
+.desktop-nav .current-menu-item > a {
     color: var(--white);
+    background-color: rgba(255,255,255,0.1);
+    color: var(--accent-gold);
 }
 
-.desktop-nav a::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0%;
-    height: 1px;
-    background-color: var(--accent-gold);
-    transition: width 0.3s ease;
-}
-
-.desktop-nav a:hover::after {
-    width: 100%;
-}
-
+/* -- Mobile Toggle Button -- */
 .mobile-menu-btn {
     display: none;
     background: none;
-    border: none;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
     color: white;
     cursor: pointer;
+    padding: 6px 10px;
+    transition: all 0.2s ease;
 }
+
+.mobile-menu-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+/* -- Mobile Drawer Nav -- */
+.mobile-nav {
+    display: none;
+    background-color: #002649;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding: 10px 0 20px;
+}
+
+.mobile-nav.open {
+    display: block;
+}
+
+.mobile-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.mobile-nav a {
+    display: block;
+    padding: 13px 5%;
+    color: rgba(255,255,255,0.85);
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    text-decoration: none;
+}
+
+.mobile-nav a:hover {
+    color: var(--accent-gold);
+    background: rgba(255,255,255,0.05);
+}
+
+/* -- Header Spacer (prevents content from hiding behind fixed bar) -- */
+.header-spacer {
+    height: 130px; /* topbar (~33px) + navbar + logo overflow */
+}
+
+
 
 /* Hero Section */
 .hero {
@@ -531,13 +667,25 @@ img {
     margin-bottom: 60px;
 }
 
-.footer-title {
+.footer-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centered */
+    text-align: center;  /* Centered text */
+    gap: 15px;
+}
+
+.footer-logo-text {
     color: var(--white);
-    font-family: var(--font-body);
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.footer-logo-description {
+    color: rgba(255,255,255,0.6);
+    line-height: 1.4;
 }
 
 .footer-links ul {

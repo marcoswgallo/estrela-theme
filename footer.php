@@ -1,14 +1,17 @@
     <!-- Footer / Portal de Membros Teaser -->
     <footer class="footer">
         <div class="container footer-grid">
-            <div class="footer-brand">
-                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo text-white">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png"
-                         alt="<?php bloginfo('name'); ?>"
-                         class="logo-img logo-img-footer">
-                    <span class="logo-text"><?php bloginfo('name'); ?></span>
+            <!-- Logo and Description -->
+            <div class="footer-logo">
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" 
+                         alt="<?php bloginfo('name'); ?>" 
+                         class="logo-img-footer">
                 </a>
-                <p class="mt-2 text-muted"><?php bloginfo('description'); ?> A serviço da humanidade. Promovendo liberdade, igualdade e fraternidade desde a nossa fundação.</p>
+                <h3 class="footer-logo-text"><?php bloginfo( 'name' ); ?></h3>
+                <p class="footer-logo-description">
+                    A serviço da humanidade. Promovendo liberdade, igualdade e fraternidade desde a nossa fundação.
+                </p>
             </div>
             
             <div class="footer-links">
@@ -50,30 +53,39 @@
         if (typeof feather !== 'undefined') {
             feather.replace();
         }
-        
-        // Header Scroll Effect
-        const header = document.getElementById('header');
-        if(header) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const mobileNav = document.getElementById('mobile-nav');
+        if (mobileToggle && mobileNav) {
+            mobileToggle.addEventListener('click', () => {
+                const isOpen = mobileNav.classList.toggle('open');
+                mobileToggle.setAttribute('aria-expanded', isOpen);
+                mobileNav.setAttribute('aria-hidden', !isOpen);
             });
+        }
+
+        // Sticky header shrink on scroll
+        const mainHeader = document.getElementById('header');
+        if (mainHeader) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) {
+                    mainHeader.classList.add('scrolled');
+                } else {
+                    mainHeader.classList.remove('scrolled');
+                }
+            }, { passive: true });
         }
 
         // Simple Counter Animation
         const counters = document.querySelectorAll('.counter');
-        const speed = 200;
-
         if ('IntersectionObserver' in window && counters.length > 0) {
+            const speed = 200;
             counters.forEach(counter => {
                 const updateCount = () => {
                     const target = +counter.getAttribute('data-target');
                     const count = +counter.innerText;
                     const inc = target / speed;
-
                     if (count < target) {
                         counter.innerText = Math.ceil(count + inc);
                         setTimeout(updateCount, 15);
@@ -81,18 +93,14 @@
                         counter.innerText = target;
                     }
                 };
-                
                 const observer = new IntersectionObserver((entries) => {
-                    if(entries[0].isIntersecting) {
-                        updateCount();
-                        observer.disconnect();
-                    }
+                    if(entries[0].isIntersecting) { updateCount(); observer.disconnect(); }
                 }, { threshold: 0.5 });
-                
                 observer.observe(counter);
             });
         }
     </script>
+
     
 <?php wp_footer(); ?>
 </body>

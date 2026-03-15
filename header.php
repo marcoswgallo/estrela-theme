@@ -9,36 +9,100 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 
-    <!-- Header Navigation -->
+    <!-- =====================================================
+         HEADER — Two-row layout with large prominent logo
+         ===================================================== -->
     <header class="main-header" id="header">
-        <div class="container nav-wrapper">
-            <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo">
-                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png"
-                     alt="<?php bloginfo('name'); ?>"
-                     class="logo-img">
-                <span class="logo-text"><?php bloginfo( 'name' ); ?></span>
-            </a>
-            <nav class="desktop-nav">
+
+        <!-- Top Info Bar -->
+        <div class="header-topbar">
+            <div class="container topbar-inner">
+                <span class="topbar-item">
+                    <i data-feather="mail" class="topbar-icon"></i>
+                    contato@estreladeribeiraopreto.com.br
+                </span>
+                <span class="topbar-divider">|</span>
+                <span class="topbar-item">
+                    <i data-feather="phone" class="topbar-icon"></i>
+                    (16) 0000-0000
+                </span>
+            </div>
+        </div>
+
+        <!-- Main Nav Bar -->
+        <div class="header-navbar">
+            <div class="container nav-wrapper">
+
+                <!-- Logo (large, overlapping) -->
+                <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo logo-large" aria-label="Ir para a página inicial">
+                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png"
+                         alt="<?php bloginfo('name'); ?>"
+                         class="logo-img-large">
+                    <div class="logo-text-block">
+                        <span class="logo-title"><?php bloginfo( 'name' ); ?></span>
+                        <span class="logo-subtitle">Fundada em 01 de Setembro de 2025</span>
+                    </div>
+                </a>
+
+                <!-- Navigation -->
+                <nav class="desktop-nav" role="navigation" aria-label="Menu Principal">
+                    <?php
+                    if ( has_nav_menu( 'menu-1' ) ) {
+                        wp_nav_menu(
+                            array(
+                                'theme_location' => 'menu-1',
+                                'menu_id'        => 'primary-menu',
+                                'container'      => false,
+                                'fallback_cb'    => false,
+                            )
+                        );
+                    } else {
+                        echo '<ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="/quem-somos">Quem Somos</a></li>
+                            <li><a href="/publicacoes">Publicações</a></li>
+                            <li><a href="/eventos">Eventos</a></li>
+                            <li><a href="/contato">Contato</a></li>
+                        </ul>';
+                    }
+                    ?>
+                </nav>
+
+                <!-- CTA Obreiro -->
+                <div class="header-actions">
+                    <a href="#portal" class="btn btn-gold">Área do Obreiro</a>
+                </div>
+
+                <!-- Mobile Toggle -->
+                <button class="mobile-menu-btn" id="mobile-toggle" aria-label="Abrir menu" aria-expanded="false">
+                    <i data-feather="menu"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Nav (hidden by default) -->
+            <div class="mobile-nav" id="mobile-nav" aria-hidden="true">
                 <?php
                 if ( has_nav_menu( 'menu-1' ) ) {
                     wp_nav_menu(
                         array(
                             'theme_location' => 'menu-1',
-                            'menu_id'        => 'primary-menu',
                             'container'      => false,
                             'fallback_cb'    => false,
                         )
                     );
                 } else {
-                    echo '<ul><li><a href="#home">Início</a></li><li><a href="#sobre">A Loja</a></li><li><a href="#blog">Notícias</a></li><li><a href="#eventos">Calendário</a></li></ul>';
+                    echo '<ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/quem-somos">Quem Somos</a></li>
+                        <li><a href="/publicacoes">Publicações</a></li>
+                        <li><a href="/eventos">Eventos</a></li>
+                        <li><a href="#portal">Área do Obreiro</a></li>
+                    </ul>';
                 }
                 ?>
-            </nav>
-            <div class="header-actions">
-                <a href="#portal" class="btn btn-outline">Área do Obreiro</a>
             </div>
-            <button class="mobile-menu-btn" aria-label="Abrir menu">
-                <i data-feather="menu"></i>
-            </button>
         </div>
     </header>
+
+    <!-- Spacer so content doesn't hide behind fixed header -->
+    <div class="header-spacer"></div>

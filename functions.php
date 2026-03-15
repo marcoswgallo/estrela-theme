@@ -12,7 +12,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function estrela_theme_scripts() {
     // Fonts
-    wp_enqueue_style( 'estrela-fonts', 'https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Roboto:wght@300;400;500&display=swap', array(), null );
+    wp_enqueue_style(
+        'estrela-google-fonts',
+        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@300;400;500&display=swap',
+        array(),
+        null
+    );
     
     // Main stylesheet
     wp_enqueue_style( 'estrela-style', get_stylesheet_uri(), array(), '1.0.0' );
