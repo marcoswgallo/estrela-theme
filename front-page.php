@@ -8,11 +8,13 @@ get_header(); ?>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="hero-bg" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/images/hero_bg_masonic_1773579347267.png');"></div>
+        <div class="hero-bg" style="background-image: url('<?php echo esc_url( get_template_directory_uri() . '/assets/images/hero_bg_masonic_1773579347267.png' ); ?>');"></div>
         <div class="hero-overlay"></div>
+        <?php echo estrela_star_svg( 'hero-star' ); ?>
         <div class="container hero-content">
-            <h1 class="fade-in-up">Tradição, Integridade &<br><span class="highlight">Fraternidade.</span></h1>
-            <p class="fade-in-up delay-1">Uma fraternidade moderna enraizada em sabedoria ancestral, dedicada ao progresso intelectual, moral e espiritual da humanidade.</p>
+            <span class="hero-eyebrow fade-in-up">A∴R∴L∴S∴ Estrela de Ribeirão Preto Nº 3132</span>
+            <h1 class="fade-in-up delay-1">Tradição, Integridade &<br><span class="highlight">Fraternidade.</span></h1>
+            <p class="fade-in-up delay-1">Uma fraternidade enraizada em sabedoria ancestral, dedicada ao progresso intelectual, moral e espiritual da humanidade.</p>
             <div class="hero-buttons fade-in-up delay-2">
                 <a href="#sobre" class="btn btn-primary">Conhecer a Loja</a>
                 <a href="/eventos/" class="btn btn-text">Próximas Sessões <i data-feather="arrow-right"></i></a>
@@ -20,33 +22,34 @@ get_header(); ?>
         </div>
     </section>
 
-
-
-
     <!-- About Section -->
     <section class="about" id="sobre">
         <div class="container about-wrapper">
-            <div class="about-text">
+            <div class="about-text reveal">
                 <h4 class="section-subtitle">Nossa História</h4>
                 <h2 class="section-title">O Templo da Razão e da <span class="highlight-dark">Tradição Secular</span></h2>
-                <p>Fundada sob os pilares de Liberdade, Igualdade e Fraternidade, a Loja Estrela de Ribeirão Preto Nº 3132 tem sido um farol de desenvolvimento humano e benevolência na comunidade há décadas.</p>
+                <p>Fundada sob os pilares de Liberdade, Igualdade e Fraternidade, a Loja Estrela de Ribeirão Preto Nº 3132 tem sido um farol de desenvolvimento humano e benevolência na comunidade.</p>
                 <p>Através do estudo e da disciplina ética, nossos obreiros se dedicam ao aperfeiçoamento contínuo — não apenas para o benefício próprio, mas no serviço incessante pela paz universal e pelo bem-estar da sociedade.</p>
                 <a href="/sobre/" class="btn btn-primary mt-2">Ler História Completa</a>
             </div>
-            <div class="about-image">
+            <div class="about-image reveal delay-1">
                 <div class="image-frame">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/history_masonic_1773579366428.png" alt="História Maçônica">
+                    <img src="<?php echo esc_url( get_template_directory_uri() . '/assets/images/history_masonic_1773579366428.png' ); ?>" alt="História Maçônica">
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Faixa de pavimento mosaico -->
+    <div class="mosaic-band"></div>
+
     <!-- Blog Masonry (Notícias e Ações) -->
     <section class="blog-masonry" id="blog">
         <div class="container">
-            <div class="section-header text-center">
+            <div class="section-header text-center reveal">
                 <h4 class="section-subtitle">Notícias e Ações</h4>
                 <h2 class="section-title">Obras e <span class="highlight-dark">Filantropia</span></h2>
+                <?php estrela_divider(); ?>
             </div>
             
             <div class="masonry-grid">

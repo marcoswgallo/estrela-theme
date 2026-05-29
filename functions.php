@@ -11,10 +11,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Enqueue scripts and styles.
  */
 function estrela_theme_scripts() {
-    // Fonts — apenas as famílias efetivamente usadas no CSS (Montserrat + Roboto)
+    // Fonts — Cinzel (títulos lapidares, evoca inscrição em pedra) + EB Garamond
+    // (corpo serifado clássico) + Montserrat (rótulos/eyebrows em caixa alta).
     wp_enqueue_style(
         'estrela-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap',
+        'https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@400;500;600&display=swap',
         array(),
         null
     );
@@ -171,3 +172,37 @@ function estrela_redirect_obreiro_after_login( $redirect_to, $request, $user ) {
     return $redirect_to;
 }
 add_filter( 'login_redirect', 'estrela_redirect_obreiro_after_login', 10, 3 );
+
+/**
+ * ELEMENTOS DECORATIVOS — Estrela flamejante e divisores ornamentais
+ *
+ * A "Estrela" é o leitmotiv visual da identidade da Loja. Estes helpers
+ * centralizam o SVG para reuso consistente em todos os templates.
+ */
+
+/**
+ * Retorna o SVG da estrela flamejante de cinco pontas.
+ *
+ * @param string $class Classe(s) CSS extra aplicada(s) ao <svg>.
+ * @return string Markup SVG.
+ */
+function estrela_star_svg( $class = '' ) {
+    $class = trim( 'estrela-star ' . $class );
+    return '<svg class="' . esc_attr( $class ) . '" viewBox="0 0 100 100" aria-hidden="true" focusable="false">'
+        . '<polygon points="50,2 61.2,34.6 95.6,35.2 68.1,55.9 78.2,88.8 50,69 21.8,88.8 31.9,55.9 4.4,35.2 38.8,34.6"/>'
+        . '</svg>';
+}
+
+/**
+ * Imprime um divisor ornamental: filete dourado — estrela — filete dourado.
+ *
+ * @param bool $light Use true em fundos escuros (ajusta a cor via classe).
+ */
+function estrela_divider( $light = false ) {
+    $class = 'ornament-divider' . ( $light ? ' ornament-divider--light' : '' );
+    echo '<div class="' . esc_attr( $class ) . '" aria-hidden="true">'
+        . '<span class="ornament-line"></span>'
+        . estrela_star_svg( 'ornament-star' )
+        . '<span class="ornament-line"></span>'
+        . '</div>';
+}

@@ -7,6 +7,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 ?>
+    <!-- Faixa de pavimento mosaico -->
+    <div class="mosaic-band"></div>
+
     <!-- Footer / Portal de Membros Teaser -->
     <footer class="footer">
         <div class="container footer-grid">
@@ -96,6 +99,23 @@ if ( ! defined( 'ABSPATH' ) ) {
                     mainHeader.classList.remove('scrolled');
                 }
             }, { passive: true });
+        }
+
+        // Reveal on scroll — revela seções conforme entram na viewport
+        const revealEls = document.querySelectorAll('.reveal');
+        if ('IntersectionObserver' in window && revealEls.length > 0) {
+            const revealObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.15, rootMargin: '0px 0px -8% 0px' });
+            revealEls.forEach(el => revealObserver.observe(el));
+        } else {
+            // Fallback: sem suporte, mostra tudo
+            revealEls.forEach(el => el.classList.add('is-visible'));
         }
     </script>
 

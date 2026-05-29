@@ -11,23 +11,36 @@ Text Domain: estrela-theme
   Baseadas nas diretrizes da Loja Estrela de Ribeirão Preto Nº 3132
 */
 :root {
-    --primary-blue: #003868;     /* Azul Institucional */
-    --accent-gold: #998C65;      /* Dourado de Destaque */
-    --accent-gold-hover: #b3a579;
-    --bg-ivory: #FDFDFD;         /* Fundo Principal - Branco Marfim */
-    --light-bg: #f7f9fa;         /* Fundo de seções internas */
-    --text-anthracite: #2C2C2C;  /* Texto de Corpo - Cinza Antracite */
-    --text-color: #2C2C2C;       /* Alias de corpo (usado em overrides de plugins) */
-    --text-light: #6a6a6a;
+    /* — Azuis do Templo — */
+    --primary-blue: #0a2c52;     /* Azul Institucional */
+    --blue-night: #06192f;       /* Azul-noite (heros, footer) */
+    --blue-deep: #041220;        /* Quase preto azulado */
+
+    /* — Ouro real (com gradiente metálico) — */
+    --accent-gold: #c9a24b;      /* Dourado de Destaque, enriquecido */
+    --accent-gold-hover: #e0bd6a;
+    --gold-soft: #d9c188;
+    --gold-gradient: linear-gradient(135deg, #b8860b 0%, #e8cd86 45%, #f7e7b6 55%, #b8860b 100%);
+
+    /* — Pedra e pergaminho — */
+    --bg-ivory: #f7f3e9;         /* Fundo Principal - Pergaminho quente */
+    --light-bg: #efe9da;         /* Fundo de seções internas */
+    --paper-line: #e4dcc8;       /* Linhas/bordas sutis sobre pergaminho */
+    --text-anthracite: #1f2733;  /* Texto de Corpo - Antracite azulado */
+    --text-color: #1f2733;       /* Alias de corpo (usado em overrides de plugins) */
+    --text-light: #6b6452;
+    --mosaic-black: #14181f;     /* Preto do pavimento mosaico */
     --white: #FFFFFF;
-    
+
     /* Typography */
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Roboto', sans-serif;
-    
+    --font-heading: 'Cinzel', Georgia, 'Times New Roman', serif;
+    --font-body: 'EB Garamond', Georgia, serif;
+    --font-eyebrow: 'Montserrat', sans-serif;
+
     /* Layout */
-    --section-padding: 6rem 0;
+    --section-padding: 7rem 0;
     --container-width: 1200px;
+    --radius: 2px;               /* Cantos sóbrios/lapidares */
 }
 
 /* Reset & Global */
@@ -43,19 +56,48 @@ html {
 
 body {
     font-family: var(--font-body);
-    font-weight: 300;
+    font-weight: 400;
+    font-size: 1.0625rem;
     color: var(--text-anthracite);
     background-color: var(--bg-ivory);
-    line-height: 1.6;
+    line-height: 1.75;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
 }
+
+/* Atmosfera: leve halo de luz + textura de grão fixa sobre o pergaminho */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(201,162,75,0.10), transparent 60%),
+        radial-gradient(ellipse 60% 50% at 100% 100%, rgba(10,44,82,0.06), transparent 60%);
+}
+
+/* Grão sutil para dar textura de papel/pedra */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Conteúdo acima da atmosfera */
+.main-header, .header-spacer, main, .footer, section, .hero { position: relative; z-index: 1; }
 
 h1, h2, h3, h4, .logo-text {
     font-family: var(--font-heading);
     font-weight: 600;
     color: var(--primary-blue);
     line-height: 1.2;
+    letter-spacing: 0.5px;
 }
 
 p {
@@ -130,12 +172,12 @@ img {
 /* Buttons */
 .btn {
     display: inline-block;
-    padding: 12px 28px;
-    font-family: var(--font-body);
+    padding: 13px 30px;
+    font-family: var(--font-eyebrow);
     font-weight: 500;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
-    border-radius: 4px;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    border-radius: var(--radius);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
     text-transform: uppercase;
@@ -197,20 +239,23 @@ img {
    HEADER — Two-row redesign with large logo
    ========================================================================== */
 
-/* Gold button variant */
+/* Gold button variant — ouro metálico */
 .btn-gold {
-    background-color: var(--accent-gold);
-    color: var(--white);
-    border: 1px solid var(--accent-gold);
-    padding: 9px 20px;
-    font-size: 0.85rem;
+    background: var(--gold-gradient);
+    background-size: 200% 100%;
+    background-position: 0% 0%;
+    color: var(--blue-deep);
+    border: 1px solid rgba(255,255,255,0.25);
+    padding: 10px 22px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
 .btn-gold:hover {
-    background-color: var(--accent-gold-hover);
-    border-color: var(--accent-gold-hover);
+    background-position: 100% 0%;
     transform: translateY(-1px);
-    box-shadow: 0 6px 15px rgba(153,140,101,0.3);
+    box-shadow: 0 8px 20px rgba(201,162,75,0.35), inset 0 1px 0 rgba(255,255,255,0.4);
 }
 
 /* -- Main Navigation Bar -- */
@@ -224,8 +269,10 @@ img {
 }
 
 .header-navbar {
-    background-color: var(--primary-blue);
-    border-bottom: 3px solid var(--accent-gold);
+    background: linear-gradient(180deg, var(--blue-night) 0%, var(--primary-blue) 100%);
+    border-bottom: 2px solid transparent;
+    border-image: var(--gold-gradient) 1;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.25);
     transition: padding 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -288,22 +335,22 @@ img {
 }
 
 .logo-title {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 800;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
     color: var(--white);
-    letter-spacing: 0.5px;
-    line-height: 1.1;
+    letter-spacing: 1px;
+    line-height: 1.15;
     text-transform: uppercase;
 }
 
 .logo-subtitle {
-    font-family: var(--font-body);
-    font-size: 0.75rem;
+    font-family: var(--font-eyebrow);
+    font-size: 0.68rem;
     color: var(--accent-gold);
-    letter-spacing: 1.5px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    margin-top: 3px;
+    margin-top: 4px;
 }
 
 /* Footer logo (small) */
@@ -325,22 +372,39 @@ img {
 }
 
 .desktop-nav a {
+    position: relative;
     display: block;
-    color: rgba(255,255,255,0.85);
-    font-size: 0.88rem;
-    font-weight: 400;
-    letter-spacing: 0.5px;
+    color: rgba(255,255,255,0.82);
+    font-family: var(--font-eyebrow);
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    padding: 8px 14px;
-    border-radius: 3px;
+    padding: 10px 16px;
     text-decoration: none;
-    transition: all 0.25s ease;
+    transition: color 0.25s ease;
+}
+
+/* Underline dourado que cresce do centro */
+.desktop-nav a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 2px;
+    width: 0;
+    height: 1.5px;
+    background: var(--gold-gradient);
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav .current-menu-item > a::after {
+    width: calc(100% - 32px);
+    left: 16px;
 }
 
 .desktop-nav a:hover,
 .desktop-nav .current-menu-item > a {
-    color: var(--white);
-    background-color: rgba(255,255,255,0.1);
     color: var(--accent-gold);
 }
 
@@ -432,34 +496,70 @@ img {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, rgba(0,56,104,0.9) 0%, rgba(0,56,104,0.6) 50%, rgba(0,0,0,0.2) 100%);
     z-index: 2;
+    background:
+        linear-gradient(90deg, rgba(6,25,47,0.94) 0%, rgba(6,25,47,0.78) 45%, rgba(4,18,32,0.5) 100%),
+        radial-gradient(ellipse 70% 90% at 50% 50%, transparent 40%, rgba(4,18,32,0.75) 100%);
+}
+
+/* Estrela monumental, marca d'água ao fundo do hero */
+.hero-star {
+    position: absolute;
+    z-index: 2;
+    right: -4%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46vmax;
+    height: 46vmax;
+    color: var(--accent-gold);
+    opacity: 0.07;
+    pointer-events: none;
 }
 
 .hero-content {
     position: relative;
     z-index: 3;
-    max-width: 650px;
-    margin-top: 60px;
+    max-width: 680px;
+    margin-top: 40px;
+    padding-left: 28px;
+    border-left: 2px solid;
+    border-image: var(--gold-gradient) 1;
+}
+
+.hero .hero-eyebrow {
+    display: inline-block;
+    font-family: var(--font-eyebrow);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 22px;
 }
 
 .hero h1 {
-    font-size: 4rem;
+    font-size: 4.2rem;
+    font-weight: 700;
     color: var(--white);
-    margin-bottom: 20px;
+    line-height: 1.08;
+    letter-spacing: 1px;
+    margin-bottom: 26px;
+    text-shadow: 0 2px 30px rgba(0,0,0,0.5);
 }
 
 .hero p {
-    font-size: 1.2rem;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 35px;
-    max-width: 500px;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 38px;
+    max-width: 540px;
+    line-height: 1.7;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 20px;
+    gap: 22px;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 /* Animations */
@@ -495,17 +595,27 @@ img {
 }
 
 .section-subtitle {
+    display: inline-block;
     color: var(--accent-gold);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.85rem;
-    font-family: var(--font-body);
+    letter-spacing: 3px;
+    font-size: 0.78rem;
+    font-family: var(--font-eyebrow);
     font-weight: 500;
-    margin-bottom: 10px;
+    margin-bottom: 14px;
+}
+
+/* Pequena estrela antes do eyebrow centralizado */
+.text-center .section-subtitle::before {
+    content: '✦';
+    color: var(--accent-gold);
+    margin-right: 8px;
+    opacity: 0.8;
 }
 
 .section-title {
-    font-size: 2.8rem;
+    font-size: 2.9rem;
+    font-weight: 600;
     margin-bottom: 30px;
 }
 
@@ -516,26 +626,29 @@ img {
 
 .image-frame {
     position: relative;
-    border-radius: 4px;
+    border-radius: var(--radius);
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    box-shadow: 0 24px 50px rgba(10,44,82,0.18);
+    z-index: 1;
 }
 
+/* Moldura dourada deslocada — profundidade clássica */
 .image-frame::before {
     content: '';
     position: absolute;
-    top: 20px;
-    left: -20px;
+    top: 22px;
+    left: -22px;
     width: 100%;
     height: 100%;
-    border: 2px solid var(--accent-gold);
+    border: 1.5px solid var(--accent-gold);
+    border-radius: var(--radius);
     z-index: -1;
 }
 
 /* Blog Masonry Simulation */
 .blog-masonry {
     padding: var(--section-padding);
-    background-color: #f7f9fa;
+    background-color: var(--light-bg);
 }
 
 .masonry-grid {
@@ -548,15 +661,17 @@ img {
     break-inside: avoid;
     margin-bottom: 30px;
     background: var(--white);
-    border-radius: 6px;
+    border-radius: var(--radius);
+    border: 1px solid var(--paper-line);
+    border-top: 2px solid var(--accent-gold);
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 10px 30px rgba(31,39,51,0.06);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .masonry-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(10,44,82,0.13);
 }
 
 .card-img {
@@ -570,14 +685,29 @@ img {
 }
 
 .card-text-only {
-    background-color: var(--primary-blue);
+    background: linear-gradient(155deg, var(--primary-blue) 0%, var(--blue-night) 100%);
     color: var(--white);
+    border-top-color: var(--accent-gold);
+    position: relative;
+}
+
+/* Aspas decorativas na citação do Venerável */
+.card-text-only .card-content::before {
+    content: '\201C';
+    font-family: var(--font-heading);
+    font-size: 4rem;
+    line-height: 0;
+    color: var(--accent-gold);
+    opacity: 0.35;
+    position: absolute;
+    top: 38px;
+    left: 22px;
 }
 
 .card-text-only h3 {
     color: var(--white);
     font-style: italic;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .card-text-only p {
@@ -631,9 +761,19 @@ img {
 
 /* Footer & Portal */
 .footer {
-    background-color: #002240;
+    background: linear-gradient(180deg, var(--blue-night) 0%, var(--blue-deep) 100%);
     color: rgba(255,255,255,0.7);
     padding-top: 80px;
+    border-top: 2px solid transparent;
+    border-image: var(--gold-gradient) 1;
+}
+
+.footer-title {
+    font-family: var(--font-heading);
+    color: var(--white);
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 22px;
 }
 
 .footer-grid {
@@ -761,14 +901,33 @@ img {
 
 /* Page with no Featured Image — simple title banner */
 .page-hero-simple {
-    background-color: var(--primary-blue);
-    padding: 60px 0;
+    background: linear-gradient(135deg, var(--blue-night) 0%, var(--primary-blue) 100%);
+    padding: 72px 0;
+    border-bottom: 2px solid transparent;
+    border-image: var(--gold-gradient) 1;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estrela fantasma no canto do banner */
+.page-hero-simple::after {
+    content: '✦';
+    position: absolute;
+    right: 4%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 10rem;
+    color: var(--accent-gold);
+    opacity: 0.06;
+    line-height: 1;
+    pointer-events: none;
 }
 
 .page-hero-simple h1 {
     color: var(--white);
-    font-size: 2.5rem;
+    font-size: 2.7rem;
     text-align: center;
+    letter-spacing: 1.5px;
 }
 
 .page-hero-simple p {
@@ -849,6 +1008,89 @@ img {
     .masonry-grid {
         column-count: 1;
     }
+}
+
+/* ==========================================================================
+   ELEMENTOS DECORATIVOS — Estrela, Divisores, Pavimento Mosaico
+   ========================================================================== */
+
+/* Estrela base (SVG) */
+.estrela-star {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    vertical-align: middle;
+}
+
+/* Divisor ornamental: filete — estrela — filete */
+.ornament-divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin: 0 auto 50px;
+    max-width: 420px;
+    color: var(--accent-gold);
+}
+
+.ornament-divider .ornament-line {
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(90deg, transparent, var(--accent-gold));
+}
+
+.ornament-divider .ornament-line:last-child {
+    background: linear-gradient(90deg, var(--accent-gold), transparent);
+}
+
+.ornament-divider .ornament-star {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 2px rgba(184,134,11,0.4));
+}
+
+.ornament-divider--light { color: var(--gold-soft); }
+
+/* Faixa de pavimento mosaico (xadrez maçônico) */
+.mosaic-band {
+    height: 14px;
+    width: 100%;
+    background-image:
+        linear-gradient(45deg, var(--mosaic-black) 25%, transparent 25%),
+        linear-gradient(-45deg, var(--mosaic-black) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, var(--mosaic-black) 75%),
+        linear-gradient(-45deg, transparent 75%, var(--mosaic-black) 75%);
+    background-size: 14px 14px;
+    background-position: 0 0, 0 7px, 7px -7px, -7px 0;
+    background-color: #f3ecda;
+    border-top: 1px solid var(--accent-gold);
+    border-bottom: 1px solid var(--accent-gold);
+    opacity: 0.85;
+}
+
+/* ==========================================================================
+   REVEAL ON SCROLL
+   ========================================================================== */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    will-change: opacity, transform;
+}
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal.delay-1 { transition-delay: 0.12s; }
+.reveal.delay-2 { transition-delay: 0.24s; }
+.reveal.delay-3 { transition-delay: 0.36s; }
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .fade-in-up { animation: none; opacity: 1; transform: none; }
+    .hero-bg { transform: none !important; }
 }
 
 /* ==========================================================================

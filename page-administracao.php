@@ -42,16 +42,17 @@ $estrela_img_base = get_template_directory_uri() . '/assets/images/';
     <section class="admin-section">
         <div class="container">
 
-            <div class="admin-header text-center">
+            <div class="admin-header text-center reveal">
                 <span class="section-subtitle">Gestão Atual</span>
-                <h2 class="section-title">A. R. L. S. <span class="highlight-dark">Estrela de Ribeirão Preto</span></h2>
+                <h2 class="section-title">A∴ R∴ L∴ S∴ <span class="highlight-dark">Estrela de Ribeirão Preto</span></h2>
                 <p class="admin-subtitle">Loja Nº 3132 — Grande Oriente do Brasil</p>
+                <?php estrela_divider(); ?>
             </div>
 
             <!-- Officer Cards Grid -->
             <div class="officers-grid">
-                <?php foreach ( $estrela_officers as $officer ) : ?>
-                    <div class="officer-card<?php echo $officer['vem'] ? ' officer-vem' : ''; ?>">
+                <?php foreach ( $estrela_officers as $index => $officer ) : ?>
+                    <div class="officer-card reveal<?php echo $index % 3 === 1 ? ' delay-1' : ( $index % 3 === 2 ? ' delay-2' : '' ); ?><?php echo $officer['vem'] ? ' officer-vem' : ''; ?>">
                         <div class="officer-icon">
                             <img src="<?php echo esc_url( $estrela_img_base . $officer['jewel'] ); ?>"
                                  alt="<?php echo esc_attr( 'Joia do ' . $officer['role'] ); ?>"
