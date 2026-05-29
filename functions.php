@@ -11,26 +11,43 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Enqueue scripts and styles.
  */
 function estrela_theme_scripts() {
-    // Fonts
+    // Fonts — apenas as famílias efetivamente usadas no CSS (Montserrat + Roboto)
     wp_enqueue_style(
         'estrela-google-fonts',
-        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Cinzel:wght@400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Roboto:wght@300;400;500&display=swap',
+        'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Roboto:wght@300;400;500&display=swap',
         array(),
         null
     );
-    
+
     // Main stylesheet
     wp_enqueue_style( 'estrela-style', get_stylesheet_uri(), array(), '1.0.0' );
 
-    // Feather Icons
-    wp_enqueue_script( 'feather-icons', 'https://unpkg.com/feather-icons', array(), null, true );
+    // Feather Icons — versão fixa para evitar quebras quando o CDN atualizar
+    wp_enqueue_script( 'feather-icons', 'https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js', array(), '4.29.2', true );
 }
 add_action( 'wp_enqueue_scripts', 'estrela_theme_scripts' );
+
+/**
+ * Resource hints — preconnect aos servidores do Google Fonts para acelerar o carregamento.
+ */
+function estrela_resource_hints( $hints, $relation_type ) {
+    if ( 'preconnect' === $relation_type ) {
+        $hints[] = array(
+            'href'        => 'https://fonts.gstatic.com',
+            'crossorigin' => 'anonymous',
+        );
+    }
+    return $hints;
+}
+add_filter( 'wp_resource_hints', 'estrela_resource_hints', 10, 2 );
 
 /**
  * Setup theme defaults and register support
  */
 function estrela_theme_setup() {
+    // Carrega as traduções do tema (arquivos .mo na pasta /languages).
+    load_theme_textdomain( 'estrela-theme', get_template_directory() . '/languages' );
+
     // Add default posts and comments RSS feed links to head.
     add_theme_support( 'automatic-feed-links' );
 
@@ -39,6 +56,22 @@ function estrela_theme_setup() {
 
     // Enable support for Post Thumbnails on posts and pages.
     add_theme_support( 'post-thumbnails' );
+
+    // Logo personalizável via Personalizador (Aparência > Personalizar).
+    add_theme_support( 'custom-logo', array(
+        'height'      => 100,
+        'width'       => 100,
+        'flex-height' => true,
+        'flex-width'  => true,
+    ) );
+
+    // Marcação HTML5 para os recursos nativos do WordPress.
+    add_theme_support( 'html5', array(
+        'search-form', 'comment-form', 'comment-list', 'gallery', 'caption', 'style', 'script',
+    ) );
+
+    // Embeds responsivos no editor de blocos.
+    add_theme_support( 'responsive-embeds' );
 
     // Register Navigation Menus
     register_nav_menus(
@@ -111,7 +144,7 @@ add_action( 'pre_get_posts', 'estrela_exclude_restricted_from_public' );
 
 /**
  * Registrar o papel (role) personalizado "Obreiro"
- * Chamado apenas uma vez na ativação do tema.
+ * Executado apenas na ativação do tema, não em todas as requisições.
  */
 function estrela_register_obreiro_role() {
     if ( ! get_role( 'obreiro' ) ) {
@@ -126,7 +159,7 @@ function estrela_register_obreiro_role() {
         );
     }
 }
-add_action( 'after_setup_theme', 'estrela_register_obreiro_role' );
+add_action( 'after_switch_theme', 'estrela_register_obreiro_role' );
 
 /**
  * Redirecionar Obreiros logados para a Área do Obreiro em vez do dashboard do WP

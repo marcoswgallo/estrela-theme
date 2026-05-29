@@ -13,7 +13,7 @@ get_header(); ?>
     ?>
     <div class="page-hero">
         <?php if ( has_post_thumbnail() ) : ?>
-            <div class="page-hero-bg" style="background-image: url('<?php the_post_thumbnail_url('full'); ?>');">
+            <div class="page-hero-bg" style="background-image: url('<?php echo esc_url( get_the_post_thumbnail_url( get_the_ID(), 'full' ) ); ?>');">
                 <div class="page-hero-overlay"></div>
             </div>
             <div class="container page-hero-content">

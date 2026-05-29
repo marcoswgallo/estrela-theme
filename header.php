@@ -1,3 +1,12 @@
+<?php
+/**
+ * The header for our theme
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -20,9 +29,15 @@
             <div class="container nav-wrapper">
 
                 <!-- Logo (large, overlapping) -->
+                <?php
+                $estrela_logo_id  = get_theme_mod( 'custom_logo' );
+                $estrela_logo_url = $estrela_logo_id
+                    ? wp_get_attachment_image_url( $estrela_logo_id, 'full' )
+                    : get_template_directory_uri() . '/assets/images/logo.png';
+                ?>
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo logo-large" aria-label="Ir para a página inicial">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png"
-                         alt="<?php bloginfo('name'); ?>"
+                    <img src="<?php echo esc_url( $estrela_logo_url ); ?>"
+                         alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
                          class="logo-img-large">
                     <div class="logo-text-block">
                         <span class="logo-title"><?php bloginfo( 'name' ); ?></span>

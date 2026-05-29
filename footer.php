@@ -1,11 +1,26 @@
+<?php
+/**
+ * The template for displaying the footer
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+?>
     <!-- Footer / Portal de Membros Teaser -->
     <footer class="footer">
         <div class="container footer-grid">
             <!-- Logo and Description -->
             <div class="footer-logo">
+                <?php
+                $estrela_footer_logo_id  = get_theme_mod( 'custom_logo' );
+                $estrela_footer_logo_url = $estrela_footer_logo_id
+                    ? wp_get_attachment_image_url( $estrela_footer_logo_id, 'full' )
+                    : get_template_directory_uri() . '/assets/images/logo.png';
+                ?>
                 <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/logo.png" 
-                         alt="<?php bloginfo('name'); ?>" 
+                    <img src="<?php echo esc_url( $estrela_footer_logo_url ); ?>"
+                         alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>"
                          class="logo-img-footer">
                 </a>
                 <h3 class="footer-logo-text"><?php bloginfo( 'name' ); ?></h3>
@@ -49,7 +64,7 @@
         </div>
         <div class="footer-bottom">
             <div class="container">
-                <p>&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>. Todos os direitos reservados.</p>
+                <p>&copy; <?php echo esc_html( wp_date('Y') ); ?> <?php bloginfo('name'); ?>. Todos os direitos reservados.</p>
             </div>
         </div>
     </footer>
@@ -81,29 +96,6 @@
                     mainHeader.classList.remove('scrolled');
                 }
             }, { passive: true });
-        }
-
-        // Simple Counter Animation
-        const counters = document.querySelectorAll('.counter');
-        if ('IntersectionObserver' in window && counters.length > 0) {
-            const speed = 200;
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 15);
-                    } else {
-                        counter.innerText = target;
-                    }
-                };
-                const observer = new IntersectionObserver((entries) => {
-                    if(entries[0].isIntersecting) { updateCount(); observer.disconnect(); }
-                }, { threshold: 0.5 });
-                observer.observe(counter);
-            });
         }
     </script>
 

@@ -6,7 +6,27 @@
  * Loja Estrela de Ribeirão Preto Nº 3132.
  */
 
-get_header(); ?>
+get_header();
+
+/**
+ * Fonte única de dados da Administração.
+ * Para atualizar a diretoria, basta editar este array — os cards e a tabela
+ * abaixo são gerados a partir dele, evitando duplicação.
+ *
+ * 'jewel' = nome do arquivo da joia em /assets/images/
+ * 'vem'   = true apenas para o Venerável Mestre (destaque visual)
+ */
+$estrela_officers = array(
+    array( 'name' => 'Jeferson Alves Moraes',            'role' => 'Venerável Mestre', 'jewel' => 'veneravel.png',       'vem' => true ),
+    array( 'name' => 'Nelson Luiz Palomino',             'role' => '1º Vigilante',     'jewel' => '1-vigilante.png',     'vem' => false ),
+    array( 'name' => 'Christian Harley Douglas Moro',    'role' => '2º Vigilante',     'jewel' => '2-vigilante.png',     'vem' => false ),
+    array( 'name' => 'Euripedes Sergio Bredariol',       'role' => 'Orador',           'jewel' => 'orador.png',          'vem' => false ),
+    array( 'name' => 'Edson Luis Soares',                'role' => 'Secretário',       'jewel' => 'joia-secretario.png', 'vem' => false ),
+    array( 'name' => 'Marcos Rodrigo Sciarreta Segato',  'role' => 'Tesoureiro',       'jewel' => 'tesoureiro.png',      'vem' => false ),
+    array( 'name' => 'Marcos Wesley Gallo',              'role' => 'Chanceler',        'jewel' => 'chanceler.png',       'vem' => false ),
+);
+$estrela_img_base = get_template_directory_uri() . '/assets/images/';
+?>
 
 <main class="page-main admin-page" id="page-content">
 
@@ -30,64 +50,17 @@ get_header(); ?>
 
             <!-- Officer Cards Grid -->
             <div class="officers-grid">
-
-                <!-- Venerável Mestre — Destaque -->
-                <div class="officer-card officer-vem">
-                    <div class="officer-icon">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/veneravel.png" alt="Joia do Venerável Mestre" class="officer-jewel">
+                <?php foreach ( $estrela_officers as $officer ) : ?>
+                    <div class="officer-card<?php echo $officer['vem'] ? ' officer-vem' : ''; ?>">
+                        <div class="officer-icon">
+                            <img src="<?php echo esc_url( $estrela_img_base . $officer['jewel'] ); ?>"
+                                 alt="<?php echo esc_attr( 'Joia do ' . $officer['role'] ); ?>"
+                                 class="officer-jewel">
+                        </div>
+                        <h3 class="officer-name"><?php echo esc_html( $officer['name'] ); ?></h3>
+                        <p class="officer-role"><?php echo esc_html( $officer['role'] ); ?></p>
                     </div>
-                    <h3 class="officer-name">Jeferson Alves Moraes</h3>
-                    <p class="officer-role">Venerável Mestre</p>
-                </div>
-
-                <div class="officer-card">
-                    <div class="officer-icon">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/1-vigilante.png" alt="Joia do 1º Vigilante" class="officer-jewel">
-                    </div>
-                    <h3 class="officer-name">Nelson Luiz Palomino</h3>
-                    <p class="officer-role">1º Vigilante</p>
-                </div>
-
-                <div class="officer-card">
-                    <div class="officer-icon">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/2-vigilante.png" alt="Joia do 2º Vigilante" class="officer-jewel">
-                    </div>
-                    <h3 class="officer-name">Christian Harley Douglas Moro</h3>
-                    <p class="officer-role">2º Vigilante</p>
-                </div>
-
-                <div class="officer-card">
-                    <div class="officer-icon">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/orador.png" alt="Joia do Orador" class="officer-jewel">
-                    </div>
-                    <h3 class="officer-name">Euripedes Sergio Bredariol</h3>
-                    <p class="officer-role">Orador</p>
-                </div>
-
-                <div class="officer-card">
-                    <div class="officer-icon">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/joia-secretario.png" alt="Joia do Secretário" class="officer-jewel">
-                    </div>
-                    <h3 class="officer-name">Edson Luis Soares</h3>
-                    <p class="officer-role">Secretário</p>
-                </div>
-
-                <div class="officer-card">
-                    <div class="officer-icon">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/tesoureiro.png" alt="Joia do Tesoureiro" class="officer-jewel">
-                    </div>
-                    <h3 class="officer-name">Marcos Rodrigo Sciarreta Segato</h3>
-                    <p class="officer-role">Tesoureiro</p>
-                </div>
-
-                <div class="officer-card">
-                    <div class="officer-icon">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/chanceler.png" alt="Joia do Chanceler" class="officer-jewel">
-                    </div>
-                    <h3 class="officer-name">Marcos Wesley Gallo</h3>
-                    <p class="officer-role">Chanceler</p>
-                </div>
-
+                <?php endforeach; ?>
             </div><!-- .officers-grid -->
 
             <!-- Tabela Formal (alternativa visual) -->
@@ -101,34 +74,12 @@ get_header(); ?>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Jeferson Alves Moraes</td>
-                            <td><span class="role-badge vem">Venerável Mestre</span></td>
-                        </tr>
-                        <tr>
-                            <td>Nelson Luiz Palomino</td>
-                            <td><span class="role-badge">1º Vigilante</span></td>
-                        </tr>
-                        <tr>
-                            <td>Christian Harley Douglas Moro</td>
-                            <td><span class="role-badge">2º Vigilante</span></td>
-                        </tr>
-                        <tr>
-                            <td>Euripedes Sergio Bredariol</td>
-                            <td><span class="role-badge">Orador</span></td>
-                        </tr>
-                        <tr>
-                            <td>Edson Luis Soares</td>
-                            <td><span class="role-badge">Secretário</span></td>
-                        </tr>
-                        <tr>
-                            <td>Marcos Rodrigo Sciarreta Segato</td>
-                            <td><span class="role-badge">Tesoureiro</span></td>
-                        </tr>
-                        <tr>
-                            <td>Marcos Wesley Gallo</td>
-                            <td><span class="role-badge">Chanceler</span></td>
-                        </tr>
+                        <?php foreach ( $estrela_officers as $officer ) : ?>
+                            <tr>
+                                <td><?php echo esc_html( $officer['name'] ); ?></td>
+                                <td><span class="role-badge<?php echo $officer['vem'] ? ' vem' : ''; ?>"><?php echo esc_html( $officer['role'] ); ?></span></td>
+                            </tr>
+                        <?php endforeach; ?>
                     </tbody>
                 </table>
             </div>

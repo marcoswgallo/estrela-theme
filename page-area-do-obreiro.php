@@ -63,7 +63,7 @@ get_header(); ?>
                     ?>
                         <div class="module-item">
                             <span class="item-date"><?php echo get_the_date( 'd/m/Y', $aviso ); ?></span>
-                            <a href="<?php echo get_permalink( $aviso ); ?>" class="item-link"><?php echo esc_html( $aviso->post_title ); ?></a>
+                            <a href="<?php echo esc_url( get_permalink( $aviso ) ); ?>" class="item-link"><?php echo esc_html( $aviso->post_title ); ?></a>
                         </div>
                     <?php
                         endforeach;
@@ -96,7 +96,7 @@ get_header(); ?>
                     ?>
                         <div class="module-item">
                             <span class="item-date"><?php echo get_the_date( 'd/m/Y', $ata ); ?></span>
-                            <a href="<?php echo get_permalink( $ata ); ?>" class="item-link"><?php echo esc_html( $ata->post_title ); ?></a>
+                            <a href="<?php echo esc_url( get_permalink( $ata ) ); ?>" class="item-link"><?php echo esc_html( $ata->post_title ); ?></a>
                         </div>
                     <?php
                         endforeach;
@@ -126,7 +126,7 @@ get_header(); ?>
                     ?>
                         <div class="module-item">
                             <span class="item-date"><?php echo get_the_date( 'd/m/Y', $escala ); ?></span>
-                            <a href="<?php echo get_permalink( $escala ); ?>" class="item-link"><?php echo esc_html( $escala->post_title ); ?></a>
+                            <a href="<?php echo esc_url( get_permalink( $escala ) ); ?>" class="item-link"><?php echo esc_html( $escala->post_title ); ?></a>
                         </div>
                     <?php
                         endforeach;
@@ -156,7 +156,7 @@ get_header(); ?>
                     ?>
                         <div class="module-item">
                             <span class="item-date"><?php echo get_the_date( 'd/m/Y', $doc ); ?></span>
-                            <a href="<?php echo get_permalink( $doc ); ?>" target="_blank" class="item-link"><?php echo esc_html( $doc->post_title ); ?></a>
+                            <a href="<?php echo esc_url( get_permalink( $doc ) ); ?>" target="_blank" rel="noopener noreferrer" class="item-link"><?php echo esc_html( $doc->post_title ); ?></a>
                         </div>
                     <?php
                         endforeach;

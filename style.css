@@ -15,7 +15,9 @@ Text Domain: estrela-theme
     --accent-gold: #998C65;      /* Dourado de Destaque */
     --accent-gold-hover: #b3a579;
     --bg-ivory: #FDFDFD;         /* Fundo Principal - Branco Marfim */
+    --light-bg: #f7f9fa;         /* Fundo de seções internas */
     --text-anthracite: #2C2C2C;  /* Texto de Corpo - Cinza Antracite */
+    --text-color: #2C2C2C;       /* Alias de corpo (usado em overrides de plugins) */
     --text-light: #6a6a6a;
     --white: #FFFFFF;
     
@@ -81,6 +83,8 @@ img {
 .mt-2 { margin-top: 1.5rem; }
 .mt-4 { margin-top: 3rem; }
 .mb-2 { margin-bottom: 1.5rem; }
+.mb-3 { margin-bottom: 2rem; }
+.title-sm { font-size: 1.2rem; }
 .text-center { text-align: center; }
 .text-muted { color: var(--text-light); }
 .text-white { color: var(--white); }
@@ -88,6 +92,40 @@ img {
 .gold { color: var(--accent-gold) !important; }
 .highlight { color: var(--accent-gold); }
 .highlight-dark { color: var(--primary-blue); }
+
+/* Acessibilidade: oculta visualmente mas mantém para leitores de tela */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    position: absolute !important;
+    word-wrap: normal !important;
+}
+
+.screen-reader-text:focus {
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    box-shadow: 0 0 2px 2px rgba(0,0,0,0.6);
+    clip: auto !important;
+    clip-path: none;
+    color: #21759b;
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 700;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: 100000;
+}
 
 /* Buttons */
 .btn {
@@ -173,40 +211,6 @@ img {
     border-color: var(--accent-gold-hover);
     transform: translateY(-1px);
     box-shadow: 0 6px 15px rgba(153,140,101,0.3);
-}
-
-/* -- Top Info Bar -- */
-.header-topbar {
-    background-color: #001f3f;  /* Azul quase preto acima do header */
-    padding: 7px 0;
-    border-bottom: 1px solid rgba(153,140,101,0.2);
-}
-
-.topbar-inner {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-.topbar-item {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    color: rgba(255,255,255,0.7);
-    font-size: 0.82rem;
-    letter-spacing: 0.3px;
-}
-
-.topbar-icon {
-    width: 13px;
-    height: 13px;
-    color: var(--accent-gold);
-}
-
-.topbar-divider {
-    color: rgba(255,255,255,0.2);
 }
 
 /* -- Main Navigation Bar -- */
@@ -473,34 +477,6 @@ img {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-/* Impact Counters */
-.impact-counters {
-    background-color: var(--white);
-    padding: 60px 0;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.counters-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    text-align: center;
-}
-
-.counter-box h2 {
-    font-size: 3rem;
-    color: var(--accent-gold);
-    margin-bottom: 5px;
-}
-
-.counter-box p {
-    font-size: 0.9rem;
-    color: var(--text-anthracite);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 0;
 }
 
 /* About Section */
@@ -837,10 +813,6 @@ img {
     }
     .masonry-grid {
         column-count: 2;
-    }
-    .counters-grid {
-        grid-template-columns: repeat(2, 1fr);
-        row-gap: 40px;
     }
     .footer-grid {
         grid-template-columns: 1fr;
