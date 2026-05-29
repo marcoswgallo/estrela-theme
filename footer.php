@@ -7,9 +7,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 ?>
-    <!-- Faixa de pavimento mosaico -->
-    <div class="mosaic-band"></div>
-
     <!-- Footer / Portal de Membros Teaser -->
     <footer class="footer">
         <div class="container footer-grid">

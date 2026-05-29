@@ -40,9 +40,6 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- Faixa de pavimento mosaico -->
-    <div class="mosaic-band"></div>
-
     <!-- Blog Masonry (Notícias e Ações) -->
     <section class="blog-masonry" id="blog">
         <div class="container">
